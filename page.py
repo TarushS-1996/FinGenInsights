@@ -28,8 +28,17 @@ def main():
 
         # Pass the temporary file path to the FinModel
         model = FinModel(tmp_path)
-        resp = model.as_query_engine().query("Based on document provide me insights as Bullet points about financial status of the speicif quarter. Also give me important tabular data I can plot for visualization.")
-        st.markdown(resp)
+        resp = model.as_query_engine().query("Based on document provide me insights as Bullet points about financial status of the speicif quarter.")
+        ### we get the resp text and pass it as part of the query to get the tabular data
+        resp_text = str(resp)
+        #print(resp_text)
+        tab_str = resp_text + " Extract total net revenue, Net Income, Total Assets, Loans and Deposits in comparative analysis in tabular format"
+        tabular_data = model.as_query_engine().query(tab_str)
+        colu1, colu2 = st.columns(2)
+        with colu1:
+            st.markdown(resp)
+        with colu2:
+            st.markdown(tabular_data)
         # Delete the temporary file
         os.unlink(tmp_path)
     
