@@ -3,3 +3,7 @@ streamlit
 streamlit_option_menu
 snowflake-connector-python
 openai
+pandas
+fpdf
+boto3
+python-dotenv

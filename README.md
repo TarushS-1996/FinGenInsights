@@ -47,13 +47,65 @@ pip install -r requirements.txt
 export OPENAI_API_KEY="YOUR_API_KEY"
 ```
 
-4. Run the application:
+4. Airflow Installation
+
+(a) **Airflow Installation**
+
+To run the Airflow scripts included with FinGenInsights, you need to set up Apache Airflow. Follow these steps to install and configure Airflow:
+
+(a). Install Airflow:
+```
+pip install apache-airflow
+```
+
+(b). Initialize the Airflow database:
+```
+airflow db init
+```
+
+(c). Create a user for Airflow:
+```
+airflow users create
+--username admin
+--firstname FIRST_NAME
+--lastname LAST_NAME
+--role Admin
+--email example@example.com
+```
+
+(d). Start the Airflow web server:
+```
+airflow webserver --port 8080
+```
+
+(e). Open another terminal or command line instance and start the Airflow scheduler:
+```
+airflow scheduler
+```
+
+(f). Access the Airflow web interface by navigating to `http://localhost:8080` in your web browser.
+
+5. To manage environment variables securely, you should set up a `.env` file in the root directory of the project. Here's how to create and configure it:
+
+(a). Create a new file named `.env` in the root directory.
+
+(b). Open the `.env` file in a text editor and add your environment variables:
+```
+OPENAI_API_KEY=your_openai_api_key_here
+AWS_ACCESS_KEY_ID=your_aws_access_key_id_here
+AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key_here
+AWS_REGION=your_aws_region_here
+```
+
+(c). Save the file. These environment variables will be loaded automatically when the application or scripts are run.
+
+6. Run the application:
 
 ```
-streamlit run app.py
+streamlit run mainPage.py
 ```
 
-5. Access the application through your web browser at `http://localhost:8501`.
+7. Access the application through your web browser at `http://localhost:8501`.
 
 ## Usage
 
